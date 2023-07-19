@@ -16,11 +16,9 @@ public class ChessPosition {
 	public char getColumn() {
 		return column;
 	}
-
 	public int getRow() {
 		return row;
 	}
-
 	protected Position toPosition() {
 		return new Position(8 - row, column - 'a');
 	}
