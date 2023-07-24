@@ -42,26 +42,28 @@ public class UI {
 			return new ChessPosition(column, row);
 		}
 		catch (RuntimeException e) {
-			throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to h8.");
+			throw new InputMismatchException("Erro ao ler a posição. Os valores validos são de a1 a h8");
 		}
 	}
 	
-	public static void printMath(ChessMatch chessMatch, List<ChessPiece> captured){
+	public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured) {
 		printBoard(chessMatch.getPieces());
 		System.out.println();
 		printCapturedPieces(captured);
 		System.out.println();
-		System.out.println("Turno: " +chessMatch.getTurn());
-		if(!chessMatch.getCheckMate()){
-			System.out.println("Esperando jogador: " +chessMatch.getCurrentPlayer());
-			if(chessMatch.getCheck()){
-			System.out.println("CHECK!");
+		System.out.println("Turno : " + chessMatch.getTurn());
+		if (!chessMatch.getCheckMate()) {
+			System.out.println("Esperando o jogador: " + chessMatch.getCurrentPlayer());
+			if (chessMatch.getCheck()) {
+				System.out.println("CHECK!");
 			}
-		}else{
+		}
+		else {
 			System.out.println("CHECKMATE!");
-			System.out.println("Vencedor: " +chessMatch.getCurrentPlayer());
+			System.out.println("Vencedor: " + chessMatch.getCurrentPlayer());
 		}
 	}
+	
 	public static void printBoard(ChessPiece[][] pieces) {
 		for (int i = 0; i < pieces.length; i++) {
 			System.out.print((8 - i) + " ");
@@ -101,11 +103,11 @@ public class UI {
         }
         System.out.print(" ");
 	}
-
-	private static void printCapturedPieces(List<ChessPiece> captured){
+	
+	private static void printCapturedPieces(List<ChessPiece> captured) {
 		List<ChessPiece> white = captured.stream().filter(x -> x.getColor() == Color.WHITE).collect(Collectors.toList());
 		List<ChessPiece> black = captured.stream().filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList());
-		System.out.println("Peça capturada:");
+		System.out.println("Peças capturadas:");
 		System.out.print("Branca: ");
 		System.out.print(ANSI_WHITE);
 		System.out.println(Arrays.toString(white.toArray()));
